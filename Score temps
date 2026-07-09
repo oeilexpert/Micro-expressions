@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Micro-expressions - Scoring Temps</title>
+<style>
+body { font-family: Arial; padding: 20px; }
+button { padding: 12px; margin: 8px; font-size: 18px; }
+#result { font-size: 22px; margin-top: 20px; }
+</style>
+</head>
+
+<body>
+
+<h2>Détection des micro-expressions — Scoring par temps</h2>
+
+<!-- Vidéo verrouillée -->
+<video 
+    autoplay 
+    muted 
+    loop
+    playsinline 
+    width="100%" 
+    oncontextmenu="return false;" 
+    style="pointer-events:none;">
+  <source src="DEGOUT%20RAPIDE.mp4" type="video/mp4">
+</video>
+
+<h3>Quelle micro-expression avez-vous observée ?</h3>
+
+<button onclick="check('degout')">Dégoût</button>
+<button onclick="check('peur')">Peur</button>
+<button onclick="check('joie')">Joie</button>
+<button onclick="check('surprise')">Surprise</button>
+
+<div id="result"></div>
+
+<script>
+let startTime = Date.now(); // Début du test
+
+function check(answer) {
+    let endTime = Date.now();
+    let reactionTime = (endTime - startTime) / 1000; // en secondes
+    let score = "";
+
+    if (answer === 'degout') {
+        if (reactionTime <= 3) score = "⭐⭐⭐⭐ Excellent (" + reactionTime.toFixed(2) + " sec)";
+        else if (reactionTime <= 5) score = "⭐⭐⭐ Bon (" + reactionTime.toFixed(2) + " sec)";
+        else if (reactionTime <= 10) score = "⭐⭐ Moyen (" + reactionTime.toFixed(2) + " sec)";
+        else score = "⭐ Lent (" + reactionTime.toFixed(2) + " sec)";
+    } else {
+        score = "❌ Incorrect (" + reactionTime.toFixed(2) + " sec)";
+    }
+
+    document.getElementById('result').innerHTML = "Résultat : " + score;
+}
+</script>
+
+</body>
+</html>
