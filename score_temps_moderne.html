@@ -26,11 +26,11 @@ html, body {
 /* TIMER VISUEL MODERNE */
 #timerBar {
     width: 100%;
-    height: 6px;
+    height: 8px;
     background: #ddd;
-    border-radius: 3px;
+    border-radius: 4px;
     overflow: hidden;
-    margin: 8px 0;
+    margin: 6px 0;
 }
 #timerFill {
     height: 100%;
@@ -57,7 +57,7 @@ button:hover {
 /* BADGES */
 .badge {
     font-size: 22px;
-    margin-top: 8px;
+    margin-top: 6px;
 }
 </style>
 </head>
@@ -66,7 +66,7 @@ button:hover {
 
 <div id="container">
 
-<!-- Vidéo NON COUPÉE -->
+<!-- Vidéo NON COUPÉE + AGRANDIE -->
 <video 
     autoplay 
     muted 
@@ -74,7 +74,7 @@ button:hover {
     playsinline 
     width="100%" 
     oncontextmenu="return false;" 
-    style="pointer-events:none; height:40vh; object-fit:contain; background:black; border-radius:10px;">
+    style="pointer-events:none; height:50vh; object-fit:contain; background:black; border-radius:10px;">
   <source src="DEGOUT%20RAPIDE.mp4" type="video/mp4">
 </video>
 
@@ -83,7 +83,7 @@ button:hover {
     <div id="timerFill"></div>
 </div>
 
-<h3 style="margin:5px 0;">Quelle micro-expression avez-vous observée ?</h3>
+<h3 style="margin:4px 0;">Quelle micro-expression avez-vous observée ?</h3>
 
 <div style="display:flex; flex-wrap:wrap;">
 <button onclick="check('joie')">Joie</button>
@@ -94,7 +94,7 @@ button:hover {
 <button onclick="check('degout')">Dégoût</button>
 </div>
 
-<div id="result" style="margin-top:8px; font-size:18px;"></div>
+<div id="result" style="margin-top:6px; font-size:18px;"></div>
 <div class="badge" id="badge"></div>
 
 </div>
