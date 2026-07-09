@@ -5,10 +5,22 @@
 <title>Micro-expressions - Scoring Temps</title>
 
 <style>
-body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
     background: #f7f7f7;
+    font-family: Arial, sans-serif;
+}
+
+/* Conteneur plein écran */
+#container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
+    padding: 20px;
 }
 
 /* TIMER VISUEL MODERNE */
@@ -52,6 +64,8 @@ button:hover {
 
 <body>
 
+<div id="container">
+
 <h2>Détection des micro-expressions — Scoring par temps</h2>
 
 <!-- Vidéo verrouillée -->
@@ -83,6 +97,8 @@ button:hover {
 <div id="result"></div>
 <div class="badge" id="badge"></div>
 
+</div>
+
 <script>
 let startTime = Date.now();
 
@@ -102,9 +118,7 @@ function check(answer) {
     let scoreText = "";
     let badgeText = "";
 
-    // Bonne réponse = Dégoût
     if (answer === 'degout') {
-
         if (reactionTime <= 3) {
             scoreText = "⭐⭐⭐⭐ Excellent (" + reactionTime.toFixed(2) + " sec)";
             badgeText = "🏆 Badge Platine";
@@ -121,7 +135,6 @@ function check(answer) {
             scoreText = "⭐ Lent (" + reactionTime.toFixed(2) + " sec)";
             badgeText = "🥉 Badge Bronze";
         }
-
     } else {
         scoreText = "❌ Incorrect (" + reactionTime.toFixed(2) + " sec)";
         badgeText = "🚫 Aucun badge";
@@ -134,35 +147,3 @@ function check(answer) {
 
 </body>
 </html>
-<div id="container">
-
-<h2>Détection des micro-expressions — Scoring par temps</h2>
-
-<video 
-    autoplay 
-    muted 
-    loop
-    playsinline 
-    width="100%" 
-    oncontextmenu="return false;" 
-    style="pointer-events:none;">
-  <source src="DEGOUT%20RAPIDE.mp4" type="video/mp4">
-</video>
-
-<div id="timerBar">
-    <div id="timerFill"></div>
-</div>
-
-<h3>Quelle micro-expression avez-vous observée ?</h3>
-
-<button onclick="check('joie')">Joie</button>
-<button onclick="check('tristesse')">Tristesse</button>
-<button onclick="check('colere')">Colère</button>
-<button onclick="check('peur')">Peur</button>
-<button onclick="check('surprise')">Surprise</button>
-<button onclick="check('degout')">Dégoût</button>
-
-<div id="result"></div>
-<div class="badge" id="badge"></div>
-
-</div>
