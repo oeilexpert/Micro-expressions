@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Micro-expressions - Peur Rapide</title>
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #f7f7f7;
+    font-family: Arial, sans-serif;
+}
+
+/* Conteneur plein écran */
+#container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
+    padding: 10px;
+}
+
+/* VIDEO + TIMER OVERLAY */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    height: 55vh;
+    background: black;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+/* TIMER SUR LA VIDEO */
+#timerOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: rgba(255,255,255,0.3);
+}
+
+#timerFill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #00BFFF, #1E90FF);
+    transition: width 0.2s linear;
+}
+
+/* BOUTONS EMOTIONS */
+button {
+    padding: 10px 16px;
+    margin: 5px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background: #ffffff;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.15);
+}
+button:hover {
+    background: #eaeaea;
+}
+
+/* BADGES */
+.badge {
+    font-size: 22px;
+    margin-top: 6px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+<!-- VIDEO + TIMER OVERLAY -->
+<div class="video-wrapper">
+    <video autoplay muted loop playsinline oncontextmenu="return false;">
+        <source src="PEUR%20RAPIDE.mp4" type="video/mp4">
+    </video>
+
+    <!-- TIMER SUR LA VIDEO -->
+    <div id="timerOverlay">
+        <div id="timerFill"></div>
+    </div>
+</div>
+
+<h3 style="margin:4px 0;">Quelle micro-expression avez-vous observée ?</h3>
+
+<div style="display:flex; flex-wrap:wrap;">
+<button onclick="check('joie')">Joie</button>
+<button onclick="check('tristesse')">Tristesse</button>
+<button onclick="check('colere')">Colère</button>
+<button onclick="check('peur')">Peur</button>
+<button onclick="check('surprise')">Surprise</button>
+<button onclick="check('degout')">Dégoût</button>
+</div>
+
+<div id="result" style="margin-top:6px; font-size:18px;"></div>
+<div class="badge" id="badge"></div>
+
+</div>
+
+<script>
+let startTime = Date.now();
+
+// TIMER ANIMÉ SUR LA VIDEO
+function updateTimer() {
+    let elapsed = (Date.now() - startTime) / 1000;
+    let percent = Math.min((elapsed / 10) * 100, 100);
+    document.getElementById("timerFill").style.width = percent + "%";
+    requestAnimationFrame(updateTimer);
+}
+updateTimer();
+
+// SCORING
+function check(answer) {
+    let endTime = Date.now();
+    let reactionTime = (endTime - startTime) / 1000;
+    let scoreText = "";
+    let badgeText = "";
+
+    if (answer === 'peur') {
+        if (reactionTime <= 3) {
+            scoreText = "⭐⭐⭐⭐ Excellent (" + reactionTime.toFixed(2) + " sec)";
+            badgeText = "🏆 Badge Platine";
+        }
+        else if (reactionTime <= 5) {
+            scoreText = "⭐⭐⭐ Bon (" + reactionTime.toFixed(2) + " sec)";
+            badgeText = "🥇 Badge Or";
+        }
+        else if (reactionTime <= 10) {
+            scoreText = "⭐⭐ Moyen (" + reactionTime.toFixed(2) + " sec)";
+            badgeText = "🥈 Badge Argent";
+        }
+        else {
+            scoreText = "⭐ Lent (" + reactionTime.toFixed(2) + " sec)";
+            badgeText = "🥉 Badge Bronze";
+        }
+    } else {
+        scoreText = "❌ Incorrect (" + reactionTime.toFixed(2) + " sec)";
+        badgeText = "🚫 Aucun badge";
+    }
+
+    document.getElementById("result").innerHTML = "Résultat : " + scoreText;
+    document.getElementById("badge").innerHTML = badgeText;
+}
+</script>
+
+</body>
+</html>
