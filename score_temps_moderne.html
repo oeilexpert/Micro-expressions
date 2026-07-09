@@ -20,7 +20,7 @@ html, body {
     flex-direction: column;
     justify-content: flex-start;
     overflow: hidden;
-    padding: 15px;
+    padding: 10px;
 }
 
 /* TIMER VISUEL MODERNE */
@@ -30,7 +30,7 @@ html, body {
     background: #ddd;
     border-radius: 3px;
     overflow: hidden;
-    margin: 10px 0;
+    margin: 8px 0;
 }
 #timerFill {
     height: 100%;
@@ -41,9 +41,9 @@ html, body {
 
 /* BOUTONS EMOTIONS */
 button {
-    padding: 10px 18px;
-    margin: 6px;
-    font-size: 17px;
+    padding: 10px 16px;
+    margin: 5px;
+    font-size: 16px;
     border-radius: 8px;
     border: none;
     cursor: pointer;
@@ -56,8 +56,8 @@ button:hover {
 
 /* BADGES */
 .badge {
-    font-size: 24px;
-    margin-top: 10px;
+    font-size: 22px;
+    margin-top: 8px;
 }
 </style>
 </head>
@@ -65,8 +65,6 @@ button:hover {
 <body>
 
 <div id="container">
-
-<h2 style="margin:0;">Détection des micro-expressions — Scoring par temps</h2>
 
 <!-- Vidéo NON COUPÉE -->
 <video 
@@ -76,7 +74,7 @@ button:hover {
     playsinline 
     width="100%" 
     oncontextmenu="return false;" 
-    style="pointer-events:none; height:45vh; object-fit:contain; background:black; border-radius:10px;">
+    style="pointer-events:none; height:40vh; object-fit:contain; background:black; border-radius:10px;">
   <source src="DEGOUT%20RAPIDE.mp4" type="video/mp4">
 </video>
 
@@ -96,7 +94,7 @@ button:hover {
 <button onclick="check('degout')">Dégoût</button>
 </div>
 
-<div id="result" style="margin-top:10px; font-size:20px;"></div>
+<div id="result" style="margin-top:8px; font-size:18px;"></div>
 <div class="badge" id="badge"></div>
 
 </div>
